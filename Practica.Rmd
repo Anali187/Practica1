@@ -17,18 +17,19 @@ library(readr)
 
 Carga del Data Set (DS):
 ```{r carga_datos, echo=FALSE}
-epa_http <- read_table("epa_http.csv", col_names = FALSE)
+epa_http <- read_table("epa_http.csv", col_names = FALSE, show_col_types = F)
 
 ```
 
-Pregunta 1: apartado (1) 
-```{r exploracion_datos}
-summary(epa_http)
-str(epa_http)
-```
 
 Aplicar nombres descriptivos a las columnas del DS:
 ```{r categorizaciontablas_datos}
 colnames(epa_http) <- c("FQDN/IP","TIMESTAMP","PETICION HTTP","URL","PROTOCOLO","HTTP CODIGO RESPUESTA","BYTES RESPUESTA")
 ```
+
+Pregunta 1: apartado (1) 
+```{r exploracion_datos}
+summary(epa_http)
+```
+
 
