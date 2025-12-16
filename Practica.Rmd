@@ -113,6 +113,7 @@ d) porcentaje de conexiones fuera de horario
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
+Carga de la librerías necesarias:
 ```{r carga_librerias}
 library(readr)
 ```
@@ -125,15 +126,25 @@ epa_http <- read_table("epa_http.csv", col_names = FALSE, show_col_types = F)
 
 ```
 
-
 Aplicar nombres descriptivos a las columnas del DS:
 ```{r categorizaciontablas_datos}
-colnames(epa_http) <- c("FQDN/IP","TIMESTAMP","PETICION HTTP","URL","PROTOCOLO","HTTP CODIGO RESPUESTA","BYTES RESPUESTA")
+colnames(epa_http) <- c("FQDN/IP","TIMESTAMP","PETICION_HTTP","URL","PROTOCOLO","CODIGO_HTTP","BYTES_RESPUESTA")
 ```
 
-Pregunta 1: apartado (1) 
-```{r exploracion_datos}
+Pregunta 1: apartado (1): El número de filas: 7 y columnas:47748  del DS:
+```{r obtenerfilacol_datos}
 summary(epa_http)
 ```
 
+Pregunta 1: apartado (2): Valor medio de la columna Bytes 
+para ello: (a) eliminamos del campo7 el caracter "-" y lo ponemos como "NA", (b) lo transformamos a entero y luego (c) calculamos la media de los BYTES DE RESPUESTA
+```{r obtenerbytes_datos}
+epa_http$BYTES_RESPUESTA[epa_http$BYTES_RESPUESTA == "-"] <- NA
+epa_http$BYTES_RESPUESTA <- as.numeric(epa_http$BYTES_RESPUESTA)
+mean(epa_http$BYTES_RESPUESTA, na.rm = TRUE)
+```
 
+Pregunta 2: De las diferentes IPs de origen accediendo al servidor, ¿cuántas pertenecen a una IP claramente educativa (que contenga ".edu")? 
+```{r obtencionips_datos}
+sum(grepl("\\.edu", epa_http$"FQDN/IP"))
+```
