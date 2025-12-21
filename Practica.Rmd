@@ -239,12 +239,12 @@ total_bytes <- sum(epa_http_txt$BYTES_NUM, na.rm = TRUE)
 cat("Total de bytes transmitidos para descargar ficheros de texto:", total_bytes, "\n")
 ```
 
-### Pregunta 5: Si separamos la petición en 3 partes (Tipo, URL, Protocolo), usando str_split y el separador " " (espacio), ¿cuantas peticiones buscan directamente la URL = "/"? 
+### Pregunta 5:¿cuantas peticiones buscan directamente la URL = "/"? 
 ```{r Cuántas peticiones van a la URL }
 num_raiz <- sum(epa_http$URL =="/")
 num_raiz
 ```
-### Pregunta 6:  Aprovechando que hemos separado la petición en 3 partes (Tipo, URL, Protocolo) ¿Cuantas peticiones NO tienen como protocolo "HTTP/0.2"?
+### Pregunta 6: ¿Cuantas peticiones NO tienen como protocolo "HTTP/0.2"?
 ```{r Cuántas NO usan HTTP/0.2}
 num_no_http02 <- sum(epa_http$PROTOCOLO != "HTTP/0.2")
 num_no_http02
