@@ -129,7 +129,7 @@ para ello: (a) eliminamos del campo7 el caracter "-" y lo ponemos como "NA", (b)
 ```{r obtenerbytes_datos}
 epa_http$BYTES_RESPUESTA[epa_http$BYTES_RESPUESTA == "-"] <- NA
 epa_http$BYTES_RESPUESTA <- as.numeric(epa_http$BYTES_RESPUESTA)
-mean(epa_http$BYTES_RESPUESTA, na.rm = TRUE)
+as.integer(mean(epa_http$BYTES_RESPUESTA, na.rm = TRUE))
 ```
 
 
@@ -215,7 +215,6 @@ library(DT) #sino esta instaldo instalar libreria
 
 epa_http_edu <- epa_http %>% filter(str_ends(`FQDN/IP`, "\\.edu"))
 epa_http_txt <- epa_http_edu %>% filter(str_detect(`URL`, "\\.txt"))
-
 
 datatable(
   epa_http_txt,
