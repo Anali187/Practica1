@@ -78,19 +78,26 @@ Considera el siguiente escenario: Sabemos que un usuario de nuestra red empresar
 
 > Quedandonos con los PC con el score más alto, esto nos dará un ranking de sospechosos, y a estos usuarios ya les podemos mandar un mensaje de parte de la dirección de la empresa, advirtiendo que:
 
+
 > *"Este equipo tuvo el puerto X expuesto con N conexiones remotas durante Y dias; si se trataba de una prueba, hay que registrarla oficialmente, y si no lo era, hay que cerrar el servicio para evitar riesgos de seguridad".*
+
+
+__Carga del módulo de generación de reportes automáticos en RSTudio__
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-Carga de la librerías necesarias:
+
+__Carga de la librerías necesarias:__
 
 ```{r carga_librerias}
 library(readr)
 ```
 
-## Resolución ejercicios:
+
+# Ejercicios prácticos: 
+
 
 Carga del Data Set (DS):
 
@@ -105,13 +112,18 @@ Aplicar nombres descriptivos a las columnas del DS:
 colnames(epa_http) <- c("FQDN/IP","TIMESTAMP","PETICION_HTTP","URL","PROTOCOLO","CODIGO_HTTP","BYTES_RESPUESTA")
 ```
 
-Pregunta 1: apartado (1): El número de filas: 7 y columnas:47748 del DS:
+
+### Pregunta 1: apartado (1): 
+El número de filas: 7 y columnas:47748  del DS:
 
 ```{r obtenerfilacol_datos}
 summary(epa_http)
 ```
 
-Pregunta 1: apartado (2): Valor medio de la columna Bytes para ello: (a) eliminamos del campo7 el caracter "-" y lo ponemos como "NA", (b) lo transformamos a entero y luego (c) calculamos la media de los BYTES DE RESPUESTA
+
+### Pregunta 1: apartado (2): 
+Valor medio de la columna Bytes 
+para ello: (a) eliminamos del campo7 el caracter "-" y lo ponemos como "NA", (b) lo transformamos a entero y luego (c) calculamos la media de los BYTES DE RESPUESTA
 
 ```{r obtenerbytes_datos}
 epa_http$BYTES_RESPUESTA[epa_http$BYTES_RESPUESTA == "-"] <- NA
@@ -119,8 +131,114 @@ epa_http$BYTES_RESPUESTA <- as.numeric(epa_http$BYTES_RESPUESTA)
 mean(epa_http$BYTES_RESPUESTA, na.rm = TRUE)
 ```
 
-Pregunta 2: De las diferentes IPs de origen accediendo al servidor, ¿cuántas pertenecen a una IP claramente educativa (que contenga ".edu")?
+
+### Pregunta 2: 
+De las diferentes IPs de origen accediendo al servidor, ¿cuántas pertenecen a una IP claramente educativa (que contenga ".edu")? 
 
 ```{r obtencionips_datos}
 sum(grepl("\\.edu", epa_http$"FQDN/IP"))
 ```
+
+### Pregunta 3 
+
+De todas las peticiones recibidas por el servidor cual es la hora en la que hay mayor volumen de peticiones HTTP de tipo “GET”?
+
+Creamos el data set que filtre GET para obtener las peticiones, el fitrado es independiente de mayúsculas o minúsculas y caracteres que preceden y anteceden a la cadena
+
+```{r tabla filtrada get, echo=TRUE, message=FALSE}
+library(dplyr) # Instalar libreria
+#library(stringr)
+library(DT) # Instalar libreria
+epa_http_filget <- epa_http %>% filter(grepl("GET", `PETICION_HTTP`, ignore.case = TRUE))
+
+datatable(
+  epa_http_filget,
+  options = list(
+    scrollX = TRUE,
+    pageLength = 5,
+    autoWidth = TRUE
+  )
+)
+#head(epa_http_filget, 5)
+```
+
+Para determinar la cantidad de peticiones por hora hacemos la Extración de datos DIA-HORA y en la variable conteo guardamos el resultado por hora
+
+```{r extracion de datos y conteo de horas, echo=TRUE, message=FALSE, fig.width=12, out.width='100%'}
+library(dplyr)
+library(DT)
+
+epa_http_filget$DIA <- as.numeric(substr(epa_http_filget$TIMESTAMP, 2, 3))
+epa_http_filget$HORA <- as.numeric(substr(epa_http_filget$TIMESTAMP, 5, 6))
+#head(epa_http_filget[, c("TIMESTAMP", "DIA", "HORA")])
+
+conteo <- epa_http_filget %>% group_by(DIA, HORA) %>% summarise(PETICIONES_HORA = n(), .groups = 'drop') %>% arrange(DIA, HORA)
+
+
+
+datatable(
+  conteo,
+  options = list(
+    scrollX = TRUE,
+    pageLength = 10,
+    autoWidth = FALSE,
+    columnDefs = list(
+      list(targets = 0:2, className = "dt-center")
+    )
+  ),
+  rownames = FALSE,
+  class = 'cell-border stripe hover'
+)
+
+#head(conteo, 25)
+max_peticiones <- conteo %>% slice_max(PETICIONES_HORA, n = 1)
+#head(max_peticiones,1)
+hora_max <- max_peticiones$HORA[1]
+peticiones_max <- max_peticiones$PETICIONES_HORA[1]
+#mensaje de impresion
+sprintf("A la hora %s se tiene el número máximo de peticiones y en total son %d", 
+        hora_max, peticiones_max)
+```
+
+### Pregunta 4:
+De las peticiones hechas por instituciones educativas (.edu), ¿Cuantos bytes en total se han transmitido, en peticiones de descarga de ficheros de texto ".txt"?
+
+Creamos el data set que filtre .edu y de estos nos muestre las peticiones de desacarga .txt, despues sumamos la totalidad de bytes
+
+```{r tabla filtrada_edu, echo=TRUE, message=FALSE}
+
+library(dplyr)
+library(stringr)
+library(knitr)
+library(DT) #sino esta instaldo instalar libreria
+
+epa_http_edu <- epa_http %>% filter(str_ends(`FQDN/IP`, "\\.edu"))
+epa_http_txt <- epa_http_edu %>% filter(str_detect(`URL`, "\\.txt"))
+
+
+datatable(
+  epa_http_txt,
+  options = list(
+    scrollX = TRUE,
+    pageLength = 5,
+    autoWidth = TRUE
+  )
+)
+
+#head(epa_http_txt, 5)
+
+#verificaciòn tipo de datos
+str(epa_http_txt$`BYTES_RESPUESTA`)
+#conversion de carcteres a datos y poniendo valores convertibles como N/A
+epa_http_txt$BYTES_NUM <- suppressWarnings(as.numeric(epa_http_txt$`BYTES_RESPUESTA`))
+# Ver cuántos valores no se pudieron convertir (se volvieron NA)
+valores_na <- sum(is.na(epa_http_txt$BYTES_NUM))
+cat("Valores no convertibles a numérico:", valores_na, "\n")
+# Ahora sumar
+total_bytes <- sum(epa_http_txt$BYTES_NUM, na.rm = TRUE)
+cat("Total de bytes transmitidos para descargar ficheros de texto:", total_bytes, "\n")
+```
+# final
+
+
+
