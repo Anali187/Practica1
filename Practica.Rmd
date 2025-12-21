@@ -249,7 +249,7 @@ num_raiz
 ### Pregunta 6: 
 ¿Cuantas peticiones NO tienen como protocolo "HTTP/0.2"?
 ```{r Cuántas NO usan HTTP/0.2}
-num_no_http02 <- sum(epa_http$PROTOCOLO != "HTTP/0.2")
+num_no_http02 <- sum(epa_http$PROTOCOLO =="HTTP/1.0\"")
 num_no_http02
 ```
 
