@@ -118,7 +118,7 @@ Carga de la librerías necesarias:
 library(readr)
 ```
 
-## Resolución ejercicios: 
+# Ejercicios prácticos: 
 
 Carga del Data Set (DS):
 ```{r carga_datos, echo=FALSE}
