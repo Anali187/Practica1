@@ -152,7 +152,7 @@ De las diferentes IPs de origen accediendo al servidor, ¿cuántas pertenecen a 
 sum(grepl("\\.edu", epa_http$"FQDN/IP"))
 ```
 
-Pregunta 3 
+### Pregunta 3 
 
 De todas las peticiones recibidas por el servidor cual es la hora en la que hay mayor volumen de peticiones HTTP de tipo “GET”?
 
@@ -213,7 +213,7 @@ sprintf("A la hora %s se tiene el número máximo de peticiones y en total son %
         hora_max, peticiones_max)
 ```
 
-Pregunta 4:
+### Pregunta 4:
 De las peticiones hechas por instituciones educativas (.edu), ¿Cuantos bytes en total se han transmitido, en peticiones de descarga de ficheros de texto ".txt"?
 
 Creamos el data set que filtre .edu y de estos nos muestre las peticiones de desacarga .txt, despues sumamos la totalidad de bytes
