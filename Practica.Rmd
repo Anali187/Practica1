@@ -108,17 +108,17 @@ d) porcentaje de conexiones fuera de horario
 
 >"Este equipo tuvo el puerto X expuesto con N conexiones remotas durante Y dias; si era una prueba, hay que registrarla y si no lo era, hay que evitarlo". 
 
-
+__Carga del módulo de generación de reportes automáticos en RSTudio__
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-Carga de la librerías necesarias:
+__Carga de la librerías necesarias:__
 ```{r carga_librerias}
 library(readr)
 ```
 
-## Resolución ejercicios: 
+# Ejercicios prácticos: 
 
 Carga del Data Set (DS):
 ```{r carga_datos, echo=FALSE}
@@ -131,12 +131,14 @@ Aplicar nombres descriptivos a las columnas del DS:
 colnames(epa_http) <- c("FQDN/IP","TIMESTAMP","PETICION_HTTP","URL","PROTOCOLO","CODIGO_HTTP","BYTES_RESPUESTA")
 ```
 
-Pregunta 1: apartado (1): El número de filas: 7 y columnas:47748  del DS:
+### Pregunta 1: apartado (1): 
+El número de filas: 7 y columnas:47748  del DS:
 ```{r obtenerfilacol_datos}
 summary(epa_http)
 ```
 
-Pregunta 1: apartado (2): Valor medio de la columna Bytes 
+### Pregunta 1: apartado (2): 
+Valor medio de la columna Bytes 
 para ello: (a) eliminamos del campo7 el caracter "-" y lo ponemos como "NA", (b) lo transformamos a entero y luego (c) calculamos la media de los BYTES DE RESPUESTA
 ```{r obtenerbytes_datos}
 epa_http$BYTES_RESPUESTA[epa_http$BYTES_RESPUESTA == "-"] <- NA
@@ -144,7 +146,8 @@ epa_http$BYTES_RESPUESTA <- as.numeric(epa_http$BYTES_RESPUESTA)
 mean(epa_http$BYTES_RESPUESTA, na.rm = TRUE)
 ```
 
-Pregunta 2: De las diferentes IPs de origen accediendo al servidor, ¿cuántas pertenecen a una IP claramente educativa (que contenga ".edu")? 
+### Pregunta 2: 
+De las diferentes IPs de origen accediendo al servidor, ¿cuántas pertenecen a una IP claramente educativa (que contenga ".edu")? 
 ```{r obtencionips_datos}
 sum(grepl("\\.edu", epa_http$"FQDN/IP"))
 ```
