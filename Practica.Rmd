@@ -4,147 +4,123 @@ author: "Autores: Anali Concha, Valenti Molins,Francisco Belalcazar, David Corta
 date: "Fecha: 2025-12-16"
 output: html_document
 ---
-# 1. DATA SCIENCE
+
+## 1. DATA SCIENCE
 
 Atendiendo a la clasificación de las preguntas:
 
-_Descriptivas: ¿Cómo es el conjunto de datos, estadísticamente?_
+*Descriptivas: ¿Cómo es el conjunto de datos, estadísticamente?*
 
-_Exploratorias: ¿Qué relaciones existen en los datos?_
+*Exploratorias: ¿Qué relaciones existen en los datos?*
 
-_Inferenciales: ¿Cómo se generalizan los datos a una muestra mayor?_
+*Inferenciales: ¿Cómo se generalizan los datos a una muestra mayor?*
 
-_Predictivas: ¿Se pueden predecir nuevos valores no vistos?_
+*Predictivas: ¿Se pueden predecir nuevos valores no vistos?*
 
-_Causales: ¿Qué causa el comportamiento visto en los datos?_
+*Causales: ¿Qué causa el comportamiento visto en los datos?*
 
 ### Pregunta 1:
 
-De las siguientes preguntas, clasifica cada una como descriptiva, exploratoria,
-inferencia, predictiva o causal,y razona brevemente (una frase) el porqué:
+De las siguientes preguntas, clasifica cada una como descriptiva, exploratoria, inferencia, predictiva o causal,y razona brevemente (una frase) el porqué:
 
-1. Dado un registro de vehículos que circulan por una autopista, disponemos de su
-marca y modelo, país de matriculación, y tipo de vehículo (por número de
-ruedas). Con tal de ajustar precios de los peajes, ¿Cuántos vehículos tenemos
-por tipo? ¿Cuál es el tipo más frecuente? ¿De qué países tenemos más vehículos?
+1.  Dado un registro de vehículos que circulan por una autopista, disponemos de su marca y modelo, país de matriculación, y tipo de vehículo (por número de ruedas). Con tal de ajustar precios de los peajes, ¿Cuántos vehículos tenemos por tipo? ¿Cuál es el tipo más frecuente? ¿De qué países tenemos más vehículos?
 
+**Pregunta descriptiva, porque nos pregunta por como son los datos cuantitativamente y estadísticamente.**
 
-__Pregunta descriptiva, porqué nos pregunta por como son los datos cuantitativamente y estadísticamente.__
+2.  Dado un registro de visualizaciones de un servicio de video-on-demand, donde disponemos de los datos del usuario, de la película seleccionada, fecha de visualización y categoría de la película, queremos saber ¿Hay alguna preferencia en cuanto a género literario según los usuarios y su rango de edad?
 
+**Pregunta exploratoria, porque nos pregunta por las preferencias de los usuarios, que no es un dato explícito, sinó que aparece al establecer relaciones entre los datos.**
 
-2. Dado un registro de visualizaciones de un servicio de video-on-demand, donde
-disponemos de los datos del usuario, de la película seleccionada, fecha de
-visualización y categoría de la película, queremos saber ¿Hay alguna preferencia
-en cuanto a género literario según los usuarios y su rango de edad?
+3.  Dado un registro de peticiones a un sitio web, vemos que las peticiones que provienen de una red de telefonía concreta acostumbran a ser incorrectas y provocarnos errores de servicio. ¿Podemos determinar si en el futuro, los próximos mensajes de esa red seguirán dando problemas? ¿Hemos notado el mismo efecto en otras redes de telefonía?
 
+**Pregunta predictiva/exploratoria, porque lo que se quiere intentar es predecir un comportamiento futuro a partir de un conjunto de datos presente, aunque también de alguna manera, nos pregunta por si hemos notado un comportamiento similar en otras redes, y por tanto establecer relaciones entre distintas redes.**
 
-__Pregunta exploratoria, porqué nos pregunta por las preferencias de los usuarios, que no es un dato explícito, sinó que aparece al establecer relaciones entre los datos.__
+4.  Dado los registros de usuarios de un servicio de compras por internet, los usuarios pueden agruparse por preferencias de productos comprados. Queremos saber si ¿Es posible que, dado un usuario al azar y según su historial, pueda ser directamente asignado a un o diversos grupos?
 
-
-3. Dado un registro de peticiones a un sitio web, vemos que las peticiones que provienen de una red de telefonía concreta acostumbran a ser incorrectas y provocarnos errores de servicio. ¿Podemos determinar si en el futuro, los
-próximos mensajes de esa red seguirán dando problemas? ¿Hemos notado el mismo efecto en otras redes de telefonía?
-
-
-__Pregunta predictiva/exploratoria, porqué lo que se quiere intentar es predecir un comportamiento futuro a partir de un conjunto de datos presente, aunque también de alguna manera, nos pregunta por si hemos notado un comportamiento similar en otras redes, y por tanto establecer relaciones entre distintas redes.__
-
-
-4. Dado los registros de usuarios de un servicio de compras por internet, los usuarios pueden agruparse por preferencias de productos comprados.
-Queremos saber si ¿Es posible que, dado un usuario al azar y según su historial, pueda ser directamente asignado a un o diversos grupos?
-
-
-__Pregunta causal, porqué nos pregunta por la categoría donde se posiciona un usuario al azar, sólo viendo su historial de compras, y de esa manera, pudiendo categorizar el tipo de comprador que es, siendo esa categoria la causa de su comportamiento posterior.__
+**Pregunta predictiva, porque el objetivo es utilizar el modelo de grupos ya conocido para clasificar (predecir la etiqueta) de un nuevo usuario aleatorio basándose en su comportamiento previo.**
 
 ### Pregunta 2:
 
-Considera el siguiente escenario:
-Sabemos que un usuario de nuestra red empresarial ha estado usando esta para fines
-no relacionados con el trabajo, como por ejemplo tener un servicio web no autorizado
-abierto a la red (otros usuarios tienen servicios web activados y autorizados). No
-queremos tener que rastrear los puertos de cada PC, y sabemos que la actividad puede
-haber cesado. Pero podemos acceder a los registros de conexiones TCP de cada máquina
-de cada trabajador (hacia donde abre conexión un PC concreto). Sabemos que nuestros
-clientes se conectan desde lugares remotos de forma legítima, como parte de nuestro
-negocio, y que un trabajador puede haber habilitado temporalmente servicios de
-prueba. Nuestro objetivo es reducir lo posible la lista de posibles culpables, con tal de
-explicarles que por favor no expongan nuestros sistemas sin permiso de los operadores
-o la dirección.
+Considera el siguiente escenario: Sabemos que un usuario de nuestra red empresarial ha estado usando esta para fines no relacionados con el trabajo, como por ejemplo tener un servicio web no autorizado abierto a la red (otros usuarios tienen servicios web activados y autorizados). No queremos tener que rastrear los puertos de cada PC, y sabemos que la actividad puede haber cesado. Pero podemos acceder a los registros de conexiones TCP de cada máquina de cada trabajador (hacia donde abre conexión un PC concreto). Sabemos que nuestros clientes se conectan desde lugares remotos de forma legítima, como parte de nuestro negocio, y que un trabajador puede haber habilitado temporalmente servicios de prueba. Nuestro objetivo es reducir lo posible la lista de posibles culpables, con tal de explicarles que por favor no expongan nuestros sistemas sin permiso de los operadores o la dirección.
 
+> Como el hecho de buscar una única persona culpable no es el objeto de la investigación, dados los datos disponibles, debemos limitarnos a reducir al máximo el número de posibles sospechosos, usando toda la información disponible e intentar relacionarla, primero deberíamos hacernos la pregunta sobre cuáles son los escenarios posibles:
 
->Como el hecho de buscar una única persona culpable no es el objeto de la investigación, dados los datos disponibles, debemos limitarnos a reducir al máximo el número de posibles sospechosos, usando toda la información disponible e intentar relacionarla, primero deberíamos hacernos la pregunta sobre cuáles son los escenarios posibles:
+> a)  host-servidor: hay un PC de usuario que, durante una ventana de tiempo, ha recibido muchas conexiones entrantes
+> b)  falsos positivos esperados: equipos con servicios autoritzados (servidores reales), equipos de pruebas cortas aprobadas, VPN/remote support, herramientas corporativas que parecen un servidor
+> c)  evasión o túneles: alguien podria haver expuesto un servicio via túnel saliente (como Cloudflare Tunnel). Esto dejaría una huella: conexiones salientes persistentes a dominios concretos y gran volumen de datos transmitidos.
 
->a) host-servidor: hay un PC de usuario que, durante una ventana de tiempo, ha recibido muchas conexiones entrantes
-b) falsos positivos esperados: equipos con servicios autoritzados (servidores reales), equipos de pruebas cortas aprobadas, VPN/remote support, herramientas corporativas que parecen un servidor
-c) evasión o túneles: alguien podria haver expuesto un servicio via túnel saliente (como Cloudflare Tunnel). Esto dejaría una huella: conexiones salientes persistentes a dominios concretos y gran volumen de datos transmitidos. 
-
->Para ello podríamos empezar por:
-1. listar todas las conexiones a puertos susceptibles de albergar servicios web 
-2. listar los pc que tienen permisos para abrir puertos web por tiempo limitado
-3. enumerar el número de conexiones de cada máquina durante un periodo de tiempo determinado
+> Para ello podríamos empezar por:  
+1. listar todas las conexiones a puertos susceptibles de albergar servicios web   
+2. listar los pc que tienen permisos para abrir puertos web por tiempo limitado    
+3. enumerar el número de conexiones de cada máquina durante un periodo de tiempo determinado   
 4. listar los parámetros relevantes a analizar: timestamp_inicio, timestamp_final, local_ip, local_port, remote_ip, remote_port, protocolo, número de bytes tx/rx
 
->Deberíamos primero normalizar i filtrar los datos, por ejemplo unificando timestamps a UTC,  eliminando servidores autorizados, eliminando ventanas de prueba autorizadas, elimina comunicaciones internas.
+> Deberíamos primero normalizar i filtrar los datos, por ejemplo unificando timestamps a UTC, eliminando servidores autorizados, eliminando ventanas de prueba autorizadas, elimina comunicaciones internas.
 
->A partir de aquí construimos un indicador claro de servidor no autorizado: 
-Para cada PC y para cada puerto local (p.e. 80/443/8080/8443/8000), calcula dentro de una ventana temporal (dia o hora), lo siguiente:
+> A partir de aquí construimos un indicador claro de servidor no autorizado: Para cada PC y para cada puerto local (p.e. 80/443/8080/8443/8000), calcula dentro de una ventana temporal (dia o hora), lo siguiente:
 
->a) los remote ips únicos, o sea cuantas IPs diferentes la han conectado
-b) connexiones_totales
-c) dias activo o horas_activo (persistència)
-d) porcentaje de conexiones fuera de horario 
+> a)  los remote ips únicos, o sea cuantas IPs diferentes la han conectado
+> b)  connexiones_totales
+> c)  dias activo o horas_activo (persistència)
+> d)  porcentaje de conexiones fuera de horario
 
->A continuación, con esta información, procederemos a crear un ranking de los PCs sospechosos:
+> A continuación, con esta información, procederemos a crear un ranking de los PCs sospechosos:
 
->Score alto si:  
-1-remote ips únicas es alto;  
-2-dias activo es >1;  
-3-connexiones totales es alto;  
-4-el puerto es típico de web (80/443/8080/8443/8000)
+> Score alto si:\
+> 1. remote ips únicas es alto;\
+> 2. dias activo es \>1;\
+> 3. connexiones totales es alto;\
+> 4. el puerto es típico de web (80/443/8080/8443/8000)
 
->Score bajo si:  
-1-solo pasa 1 dia y con pocas conexiones remotas (prueba corta);  
-2-el puerto es normal para clientes (p.e. 443 saliente hacia fuera)
+> Score bajo si:\
+> 1. solo pasa 1 dia y con pocas conexiones remotas (prueba corta);\
+> 2. el puerto es normal para clientes (p.e. 443 saliente hacia fuera)
 
->Quedandonos con los PC con el score más alto, esto nos dará un ranking de sospechosos, y a estos usuarios ya les podemos mandar un mensaje por parte de la dirección de la empresa, advirtiendo: 
+> Quedandonos con los PC con el score más alto, esto nos dará un ranking de sospechosos, y a estos usuarios ya les podemos mandar un mensaje de parte de la dirección de la empresa, advirtiendo que:
 
->"Este equipo tuvo el puerto X expuesto con N conexiones remotas durante Y dias; si era una prueba, hay que registrarla y si no lo era, hay que evitarlo". 
-
+> *"Este equipo tuvo el puerto X expuesto con N conexiones remotas durante Y dias; si se trataba de una prueba, hay que registrarla oficialmente, y si no lo era, hay que cerrar el servicio para evitar riesgos de seguridad".*
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
 Carga de la librerías necesarias:
+
 ```{r carga_librerias}
 library(readr)
 ```
 
-## Resolución ejercicios: 
+## Resolución ejercicios:
 
 Carga del Data Set (DS):
+
 ```{r carga_datos, echo=FALSE}
 epa_http <- read_table("epa_http.csv", col_names = FALSE, show_col_types = F)
 
 ```
 
 Aplicar nombres descriptivos a las columnas del DS:
+
 ```{r categorizaciontablas_datos}
 colnames(epa_http) <- c("FQDN/IP","TIMESTAMP","PETICION_HTTP","URL","PROTOCOLO","CODIGO_HTTP","BYTES_RESPUESTA")
 ```
 
-Pregunta 1: apartado (1): El número de filas: 7 y columnas:47748  del DS:
+Pregunta 1: apartado (1): El número de filas: 7 y columnas:47748 del DS:
+
 ```{r obtenerfilacol_datos}
 summary(epa_http)
 ```
 
-Pregunta 1: apartado (2): Valor medio de la columna Bytes 
-para ello: (a) eliminamos del campo7 el caracter "-" y lo ponemos como "NA", (b) lo transformamos a entero y luego (c) calculamos la media de los BYTES DE RESPUESTA
+Pregunta 1: apartado (2): Valor medio de la columna Bytes para ello: (a) eliminamos del campo7 el caracter "-" y lo ponemos como "NA", (b) lo transformamos a entero y luego (c) calculamos la media de los BYTES DE RESPUESTA
+
 ```{r obtenerbytes_datos}
 epa_http$BYTES_RESPUESTA[epa_http$BYTES_RESPUESTA == "-"] <- NA
 epa_http$BYTES_RESPUESTA <- as.numeric(epa_http$BYTES_RESPUESTA)
 mean(epa_http$BYTES_RESPUESTA, na.rm = TRUE)
 ```
 
-Pregunta 2: De las diferentes IPs de origen accediendo al servidor, ¿cuántas pertenecen a una IP claramente educativa (que contenga ".edu")? 
+Pregunta 2: De las diferentes IPs de origen accediendo al servidor, ¿cuántas pertenecen a una IP claramente educativa (que contenga ".edu")?
+
 ```{r obtencionips_datos}
 sum(grepl("\\.edu", epa_http$"FQDN/IP"))
 ```
