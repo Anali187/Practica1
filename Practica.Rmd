@@ -139,7 +139,7 @@ De las diferentes IPs de origen accediendo al servidor, ¿cuántas pertenecen a 
 sum(grepl("\\.edu", epa_http$"FQDN/IP"))
 ```
 
-### Pregunta 3 
+### Pregunta 3: 
 
 De todas las peticiones recibidas por el servidor cual es la hora en la que hay mayor volumen de peticiones HTTP de tipo “GET”?
 
@@ -251,8 +251,4 @@ num_no_http02
 ```
 
 # final
-
-
-
-
 
